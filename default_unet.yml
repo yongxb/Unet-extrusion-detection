@@ -1,0 +1,143 @@
+general:
+#### General settings ####
+  dataset_dir: ['../Documents/extrusion/train_nv_reverse_6_2']
+  model_dir: 'networks'
+  folder_suffix: ''
+  image_subfolder: 'Images'
+  ground_truth_subfolder: 'Masks'
+  
+  # CPU/GPU settings
+  visible_gpu: 0
+  allow_growth: True
+  use_cpu: False
+  for_prediction: False
+  
+  #callbacks
+  reduce_LR_on_plateau: False
+  cosine_LR: True
+  use_tensorboard: True
+  early_stopping: False
+  
+  # File Saving
+  save_as_uint16: False
+
+model:
+#### Model parameters ####
+  filters: 64 # convolution filters
+  num_classes: 1
+  
+  optimizer: 
+    optimizer_function: 'rmsprop' # 'rmsprop', 'adam'
+    learning_rate: 0.0001
+    momentum: 0.9
+  
+  loss: 'unified_focal_loss' # 'bce_dice_loss'
+  beta: 0.5  # 2
+
+  num_epochs: 1000
+  num_train_steps: 200
+  val_split: 0.1
+  batch_size_per_GPU: 32
+  
+  dropout_rate: 0
+
+  activation: 
+    activation_function: 'relu' # 'relu', 'swish'
+    final_activation: 'sigmoid' # 'sigmoid', 'relu', 'softmax'
+
+images:
+#### Image/Ground truth settings ####
+  image_type: "2D" # "2D","3D"
+  patch_size: [128, 128] # h,w
+  num_channels: 5
+  
+  # resize images before augmentations
+  resize_factor: 1
+  
+  # log transform
+  use_log_adjust: False
+  
+  # image normalization during dataset loading
+  use_percentile_normalization: False
+  percentile: [1, 99]
+  
+  # patch normalization during test time
+  scale_input: False
+  mean_std_normalization: False
+  mean: 0
+  std: 0
+  
+  # binary ground truth operations
+  invert_ground_truth: False
+  use_binary_erosion: False
+  use_binary_dilation: False
+  use_binary_dilation_after_augmentation: False
+  disk_size: 1
+  
+tiling:
+#### Tiling settings ####
+  use_tiling: False
+  overlap_size: [0,0]
+  untiling_method: "linear_blend" # "linear_blend", "max_blend"
+
+augmentation:
+#### Image augmentations settings ####
+  augmentation_library: 'albumentations'
+  num_augmented_images: 1
+  augmentations_p: 0.9
+  
+  random_rotate: True
+  random_rotate_p: 0.9
+  
+  vertical_flip: True
+  horizontal_flip: True
+  transpose: True
+  
+  blur_group: False
+  blur_group_p: 0.3
+  
+  motion_blur: False
+  motion_blur_p: 0.1
+  median_blur: False
+  median_blur_limit: 3
+  median_blur_p: 0.3
+  blur: False
+  blur_limit: 3
+  blur_p: 0.3
+  
+  shift_scale_rotate: False
+  shift_scale_rotate_p: 0.3
+  shift_limit: 0.0625
+  scale_limit: 0.5
+  rotate_limit: 45
+  
+  distortion_group: False
+  distortion_group_p: 0.2
+  optical_distortion: False
+  optical_distortion_p: 0.3
+  elastic_transform: False
+  elastic_transform_p: 0.3
+  grid_distortion: False
+  grid_distortion_p: 0.3
+  
+  brightness_contrast_group: False
+  brightness_contrast_group_p: 0.3
+  clahe: False
+  sharpen: False
+  random_brightness_contrast: True
+  
+callbacks:
+#### Callback settings ####
+  # Tensorboard settings
+  tensorboard:
+    write_graph: False
+    write_images: False
+    write_grads: False
+    histogram_freq: 0
+
+  reduceLR:
+  # Reduce LR on plateau settings
+    reduce_LR_monitor: 'cost'
+    reduce_LR_patience: 50
+    reduce_LR_factor: 0.7
+    reduce_LR_min_lr: 0.000001
