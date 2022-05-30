@@ -1,0 +1,7 @@
+tensorflow
+tensorpack
+albumentations
+tqdm
+scipy
+numpy
+scikit-image
