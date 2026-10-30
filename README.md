@@ -8,7 +8,7 @@ in time-lapse brightfield images of a cell monolayer.
 The quantification of extrusion events in brightfield images is a crucial component in our understanding of cellular 
 dynamics. However, manually counting these events can be a laborious process. Thus, we sought to use a machine 
 learning approach to detect these extrusions. A deeply supervised attention-gated residual U-Net was trained using 
-Tensorflow and the output of the network is shown in the image below. Please see our [paper](https://www.biorxiv.org/content/10.1101/2022.04.01.486717v1) for full details of the 
+Tensorflow and the output of the network is shown in the image below. Please see our [paper](https://doi.org/10.7554/eLife.84921.3) for full details of the 
 implementation.
 
 ![](images/montage.png)
