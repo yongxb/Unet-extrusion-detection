@@ -45,3 +45,4 @@ Please see [Training.ipynb](Training.ipynb) for an example of how to train the n
 
 ***
 ## How to cite
+CITE AS: eLife2026;12:RP84921 DOI: https://doi.org/10.7554/eLife.84921.3
